@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Услуги</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png" />
+    <link rel="manifest" href="favicons/site.webmanifest" />
+    <link rel="mask-icon" href="favicons/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        window.onscroll = function () {
+          const button = document.getElementById('scrollToTop');
+          // Показ кнопки "Наверх", если прокрутка больше 20px
+          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            button.style.display = 'block';
+          } else {
+            button.style.display = 'none';
+          }
+        };
+
+        document.getElementById('scrollToTop').onclick = function () {
+          // Прокрутка страницы вверх при нажатии на кнопку
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+        // Убираем панель
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function () {
+          if (window.innerWidth <= 600) {
+            let header = document.querySelector('.Header');
+            let nav = document.querySelector('nav');
+            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (currentScroll > lastScrollTop) {
+              header.style.top = '-10000px';
+              nav.style.top = '-70px';
+            } else {
+              header.style.top = '0';
+              nav.style.top = '100px';
+            }
+            lastScrollTop = currentScroll;
+          }
+        });
+      });
+
+      // Функция обновления кода страны в поле номера телефона
+      function updatePhoneCode() {
+        const countrySelect = document.getElementById('country');
+        const phoneInput = document.getElementById('phone');
+        const countryCode = countrySelect.value;
+
+        if (!phoneInput.value.startsWith(countryCode)) {
+          phoneInput.value = countryCode + phoneInput.value.replace(/^\+?\d*/g, '');
+        }
+
+        phoneInput.addEventListener('input', function () {
+          if (!phoneInput.value.startsWith(countryCode)) {
+            phoneInput.value = countryCode + phoneInput.value.replace(/^\+?\d*/g, '');
+          }
+        });
+      }
+
+      // Функция для проверки состояния чекбокса
+      function check() {
+        var submit = document.getElementsByName('submit')[0]; // Кнопка отправки
+        var consentCheckbox = document.getElementById('popd'); // Чекбокс согласия
+        if (consentCheckbox.checked) {
+          submit.disabled = false;
+        } else {
+          submit.disabled = true;
+        }
+      }
+
+      const formData = {
+        name: '',
+        surname: '',
+        email: '',
+        country: '',
+        phone: '',
+        date: '',
+        comments: '',
+        // Метод для вывода данных в консоль
+        printData() {
+          console.log(`Имя: ${this.name}`);
+          console.log(`Фамилия: ${this.surname}`);
+          console.log(`Электронная почта: ${this.email}`);
+          console.log(`Страна: ${this.country}`);
+          console.log(`Телефон: ${this.phone}`);
+          console.log(`Дата: ${this.date}`);
+          console.log(`Комментарии: ${this.comments}`);
+        },
+      };
+
+      // Функция обработки формы
+      function submitForm(event) {
+        event.preventDefault(); // Предотвращаем стандартное поведение формы
+
+        // Получаем значения из формы
+        const name = document.getElementById('name').value.trim();
+        const surname = document.getElementById('surname').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const country = document.getElementById('country').value;
+        const phone = document.getElementById('phone').value.trim();
+        const date = document.getElementById('date').value;
+        const comments = document.getElementById('comments').value.trim();
+
+        // Проверки
+        if (!name || !email || !phone) {
+          alert('Пожалуйста, заполните обязательные поля: Имя, Email и Телефон.');
+          return;
+        }
+
+        if (!/^\+?\d+$/.test(phone)) {
+          alert('Телефон должен содержать только цифры.');
+          return;
+        }
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          alert('Введите корректный Email.');
+          return;
+        }
+
+        formData.name = name;
+        formData.surname = surname;
+        formData.email = email;
+        formData.country = country;
+        formData.phone = phone;
+        formData.date = date;
+        formData.comments = comments;
+
+        formData.printData();
+
+        // Сброс формы
+        document.getElementById('Form_contact').reset();
+
+        // Показываем сообщение о том, что форма отправлена с анимацией
+        const messageElement = document.getElementById('submissionMessage');
+        messageElement.style.display = 'block';
+        messageElement.style.color = 'green'; // Изменяем цвет текста на зеленый
+        messageElement.style.transition = 'color 1s ease-in-out';
+
+        setTimeout(() => {
+          messageElement.style.color = 'black'; // Возвращаем цвет обратно
+        }, 2000); // Через 2 секунды вернем цвет обратно
+
+        // Скрываем сообщение через 4 секунды
+        setTimeout(() => {
+          messageElement.style.display = 'none';
+        }, 4000);
+      }
+
+      // Добавляем обработчик формы
+      document.getElementById('Form_contact').addEventListener('submit', submitForm);
+    </script>
+  </head>
+
+  <body>
+    <!-- Заголовок страницы -->
+    <div class="Header d-flex justify-content-between p-3 bg-light">
+      <div>
+        <img src="https://cdn1.ozone.ru/s3/multimedia-j/6465284323.jpg" alt="Logo" width="70" height="60" />
+        <p><b>Logo</b></p>
+      </div>
+      <div>
+        <p>Группа<u> Эфбо-04-23</u></p>
+        <p style="padding-right: 30px;">Брикульский Арсений Андреевич</p>
+      </div>
+    </div>
+
+    <!-- навигация -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">Главная</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="Per_Sem.html">Первый семестр</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Vtor_Sem.html">Второй семестр</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="Uslugi.html" style="background-color:aqua">Услуги</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Avtor.html">Авторизация</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Форма -->
+    <dialog id="dialog">
+      <button type="button" class="btn btn-secondary" onclick="window.dialog.close()">Закрыть</button>
+      <form id="Form_contact" onsubmit="submitForm(event)">
+        <h2>Сайт-визитка</h2>
+        <div class="dialog__row">
+          <label for="name">Имя:</label>
+          <input type="text" name="name" id="name" />
+        </div>
+        <div class="dialog__row">
+          <label for="surname">Фамилия:</label>
+          <input type="text" name="surname" id="surname" />
+        </div>
+        <div class="dialog__row">
+          <label for="email">Электронная почта:</label>
+          <input type="email" name="email" id="email" />
+        </div>
+        <div class="dialog__row">
+          <label for="country">Страна:</label>
+          <select id="country" name="country" onchange="updatePhoneCode()">
+            <option value="+7">Россия</option>
+            <option value="+1">США</option>
+            <option value="+44">Великобритания</option>
+            <!-- Другие страны -->
+          </select>
+        </div>
+        <div class="dialog__row">
+          <label for="phone">Телефон:</label>
+          <input type="tel" id="phone" name="phone" placeholder="Введите номер телефона" />
+        </div>
+        <div class="dialog__row">
+          <label for="date">Дата:</label>
+          <input type="date" name="date" id="date" />
+        </div>
+        <div class="dialog__row">
+          <label for="comments">Комментарии:</label>
+          <textarea name="comments" id="comments"></textarea>
+        </div>
+        <div class="dialog__row">
+          <input type="checkbox" id="popd" onclick="check()" /> Я согласен с условиями
+        </div>
+        <div class="dialog__row">
+          <button type="submit" name="submit" disabled>Отправить</button>
+        </div>
+      </form>
+      <div id="submissionMessage" style="display: none; font-size: 18px; font-weight: bold; margin-top: 20px;">
+        Форма отправлена!
+      </div>
+    </dialog>
+  </body>
+</html>

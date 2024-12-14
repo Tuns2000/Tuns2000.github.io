@@ -1,0 +1,400 @@
+@keyframes shimmer {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+#lecturesTable {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 3.0s ease-in-out, visibility 0s 5s; /* Плавное изменение opacity и задержка для visibility */
+}
+
+#lecturesTable.show {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 3.0s ease-in-out; /* Только плавное изменение opacity */
+}
+
+/* Анимация для увеличения заголовка */
+h1 {
+    transition: transform 0.3s ease; /* Плавное изменение размера */
+    font-size: 2em;
+    font-weight: bold;
+    background: linear-gradient(90deg, #ff00cc, #3333ff, #00ffcc);
+    background-size: 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s infinite;
+}
+
+h1:hover {
+    transform: scale(1.035); /* Увеличение заголовка на 20% при наведении */
+    font-size: 2em;
+    font-weight: bold;
+    background: linear-gradient(90deg, #ff00cc, #3333ff, #00ffcc);
+    background-size: 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s infinite;
+}
+
+p {
+    transition: background-color 0.3s ease; 
+}
+
+p:active {
+    background-color: rgb(230, 173, 173); 
+}
+
+
+
+.student-photo {
+    width: 200px; 
+    height: 200px;
+    margin: 20px auto; /* Центрируем фото */
+    overflow: hidden; /* Избегаем выхода частей изображения */
+    border-radius: 50%; /* Круглая форма */
+    transition: transform 0.8s ease-in-out; /* Плавное вращение */
+    transform-origin: center center; /* Точка вращения — центр фото */
+}
+
+.student-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Масштабирование без искажений */
+    border-radius: 50%; /* Округляем изображение */
+    display: block; /* Убираем лишние пробелы вокруг inline-элементов */
+}
+
+.student-photo:hover {
+    transform: rotate(360deg); /* Вращение при наведении */
+}
+
+
+.shimmer-text {
+    font-size: 2em;
+    font-weight: bold;
+    background: linear-gradient(90deg, #ff00cc, #3333ff, #00ffcc);
+    background-size: 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s infinite;
+}
+
+nav {
+    position: fixed;
+    top: 110px; 
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    padding: 10px;
+    background-color: #91eae4;
+    z-index: 1;
+}
+
+main {
+    margin-top: 300px;
+    display: flex;
+    height: 100%;
+}
+
+.Header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: linear-gradient(270deg, #ff7e5f, #feb47b, #86a8e7, #91eae4);
+    background-size: 600% 600%;
+    animation: gradientAnimation 10s ease infinite;
+    height: 110px;
+    z-index: 10000;
+}
+
+.main {
+    margin-left: 200px;
+}
+
+.ykor {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 154px;
+    width: 150px;
+    height: 100%;
+    text-decoration: none;
+    border-right: 2px solid black;
+    padding: 10px;
+    margin-right: 20px;
+    background: linear-gradient(270deg, #ff7e5f, #feb47b, #86a8e7, #91eae4);
+    background-size: 600% 600%;
+    animation: gradientAnimation 10s ease infinite;
+}
+
+a.nav {
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+a.nav:hover {
+    color: rgb(139, 0, 0);
+}
+
+section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-top: 2px solid black;
+}
+
+table {
+    border: 3px solid grey;
+    background-color: aqua;
+}
+
+label.pdf {
+    color: white;
+    background-color: #007bff;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+dialog {
+    height: 500px;
+    width: 400px;
+    background: linear-gradient(270deg, #ff7e5f, #feb47b, #86a8e7, #91eae4);
+    background-size: 600% 600%;
+    animation: gradientAnimation 10s ease infinite;
+}
+
+div.dialog {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+}
+
+textarea {
+    margin-bottom: 15px;
+    resize: none;
+    height: 150px;
+    width: 300px;
+}
+
+.img {
+    padding: auto;
+    width: 250px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.3s ease;
+}
+
+.img:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+}
+
+.button {
+    background: linear-gradient(270deg, #ff7e5f, #feb47b, #86a8e7, #91eae4);
+    background-size: 600% 600%;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 15px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.5s ease;
+    animation: gradientAnimation 10s ease infinite;
+}
+
+.button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.input:placeholder-shown {
+    background-color: rgb(253, 199, 199);
+}
+
+.input:focus {
+    outline: 2px solid lightgreen;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 300px;
+}
+
+/* Мобильные устройства */
+@media (max-width: 600px) {
+    .Header {
+        height: 80px;
+        padding: 10px;
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    nav {
+        position: fixed;
+        top: 110px;
+        left: 0;
+        width: 100%;
+        display: none; 
+        background-color: #91eae4;
+        z-index: 999;
+        /* height: 50px; 
+        flex-direction: row; */
+    }
+
+    .ykor {
+        flex-direction: row;
+        width: 100px;
+        height: auto;
+        display: none;
+    }
+
+    .main {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .grid-container {
+        padding: 10px;
+    }
+    
+    .button {
+        padding: 10px 20px;
+    }
+
+    textarea {
+        width: 100%;
+    }
+
+    .img {
+        width: 100%;
+    }
+}
+
+/* Десктопы */
+@media (min-width: 1025px) {
+    .ykor {
+        width: 150px;
+        height: 100%;
+    }
+
+    .main {
+        margin-left: 200px;
+    }
+
+    .grid-container {
+        padding: 20px;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+#scrollToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .Header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 999;
+        background-color: white;
+        border-bottom: 2px solid aqua;
+        transition: top 0.3s;
+    }
+
+    body {
+        padding-top: 70px;
+    }
+}
+
+
+   .carousel-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.carousel-window {
+    width: 800px; 
+    height: 400px;
+    margin: 0 auto; 
+    border: 5px solid #ddd; 
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
+    overflow: hidden;
+    transition: all 0.3s ease-in-out; 
+}
+
+/* Эффект при наведении */
+.carousel-window:hover {
+    transform: scale(1.05); /* Увеличиваем окно при наведении */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); /* Увеличиваем тень */
+}
+
+    /* Стили для стрелок перехода */
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: #ff7e5f; 
+    }
+
+    .carousel-control-prev:hover,
+    .carousel-control-next:hover {
+        background: linear-gradient(270deg, #ff7e5f, #feb47b, #86a8e7, #91eae4);
+        background-size: 600% 600%;
+        animation: gradientAnimation 10s ease infinite;
+        }
+.row{
+    padding-top: 100px;
+}
