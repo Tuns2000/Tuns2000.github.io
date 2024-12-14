@@ -50,11 +50,7 @@ if (firstParagraph) {
     firstParagraph.textContent = "Это новый текст параграфа.";
 }
 
-// Скрытие всех видео
-const videos = document.querySelectorAll('video'); 
-videos.forEach(video => {
-    video.style.display = 'none'; 
-});
+
 
 //-------------------------------------------------------------------------------
 // 12
